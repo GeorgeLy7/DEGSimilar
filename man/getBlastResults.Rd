@@ -4,7 +4,13 @@
 \alias{getBlastResults}
 \title{Gets BLAST Results}
 \usage{
-getBlastResults(userFasta, fastaDatabase, max_target_seqs = 5)
+getBlastResults(
+  userFasta,
+  fastaDatabase,
+  maxSequencesReturned = 5,
+  dbType = "nucl",
+  userFastaType = "nucl"
+)
 }
 \arguments{
 \item{userFasta}{A fasta file containing one fasta entry. This sequence is the one the users wishes to
@@ -13,7 +19,11 @@ compare to the entries in the fastaDatabse file.}
 \item{fastaDatabase}{A fasta file containing fasta entries with sequences the user wishes to create a
 database out of and compare userFasta to.}
 
-\item{max_targe_seqs}{The maximum amount of sequences that should be returned from the BLAST. Requires >= 1.}
+\item{maxSequencesReturned}{The maximum amount of sequences that should be returned from the BLAST. Requires >= 1.}
+
+\item{dbType}{The sequence type of the database fasta. Is required to be "nucl" for nucleotide or "prot" for protein}
+
+\item{userFastaType}{The sequence type of the fasta to perorm BLAST on. Is required to be "nucl" for nucleotide or "prot" for protein}
 }
 \value{
 Returns a list containing the BLAST result template.

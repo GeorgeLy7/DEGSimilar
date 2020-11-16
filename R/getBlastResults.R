@@ -7,7 +7,9 @@
 #'    compare to the entries in the fastaDatabse file.
 #' @param fastaDatabase A fasta file containing fasta entries with sequences the user wishes to create a
 #'    database out of and compare userFasta to.
-#' @param max_targe_seqs The maximum amount of sequences that should be returned from the BLAST. Requires >= 1.
+#' @param maxSequencesReturned The maximum amount of sequences that should be returned from the BLAST. Requires >= 1.
+#' @param dbType The sequence type of the database fasta. Is required to be "nucl" for nucleotide or "prot" for protein
+#' @param userFastaType The sequence type of the fasta to perorm BLAST on. Is required to be "nucl" for nucleotide or "prot" for protein
 #'
 #' @return Returns a list containing the BLAST result template.
 #' \itemize{
@@ -26,22 +28,53 @@
 #' }
 #' @export
 #' @import rBLAST
-getBlastResults <- function(userFasta, fastaDatabase, max_target_seqs=5) {
+#' @import Biostrings
+getBlastResults <- function(userFasta, fastaDatabase, maxSequencesReturned=5, dbType="nucl", userFastaType="nucl") {
 
   #Checking user input
-  if (max_target_seqs < 1) {
+  if (maxSequencesReturned < 1) {
     stop("max_target_seqs should be greater than 1")
   }
 
-  #Checks if database already exists, if not creates database
-  if (!file.exists(paste(fastaDatabase, ".nhr",sep="")) | (!file.exists(paste(fastaDatabase, ".nin",sep="")) |
-                                                           (!file.exists(paste(fastaDatabase, ".nsq",sep=""))))) {
-    makeblastdb(fastaDatabase)
+  if (dbType != "nucl" && dbType != "prot") {
+    stop("dbType must be prot or nucl")
   }
 
-  bl <- blast(db=fastaDatabase)
-  seq <- readDNAStringSet(userFasta)
-  maxSeqs <- paste("-max_target_seqs", max_target_seqs)
-  results <- predict(bl, seq, BLAST_args=maxSeqs)
-  return(results)
+  if (userFastaType != "nucl" && userFastaType != "prot") {
+    stop("userFastaType must be prot or nucl")
+  }
+
+  #Checks if database already exists, if not creates database
+  if (!file.exists(paste(fastaDatabase, ".nhr",sep="")) || (!file.exists(paste(fastaDatabase, ".nin",sep="")) ||
+                                                           (!file.exists(paste(fastaDatabase, ".nsq",sep=""))))) {
+    makeblastdb(fastaDatabase, dbtype=dbType)
+  }
+  else {
+    print("BLAST Databse already exists for fastaDatabase file, skipping creation")
+  }
+
+  if (dbType == "nucl" && userFastaType == "nucl") {
+    bl <- blast(db=fastaDatabase, type="blastn")
+    seq <- readDNAStringSet(userFasta)
+  }
+  else if (dbType == "prot" && userFastaType == "prot") {
+    bl <- blast(db=fastaDatabase, type="blastp")
+    seq <- readAAStringSet(userFasta)
+  }
+  else if (dbType == "nucl" && userFastaType == "prot") {
+    bl <- blast(db=fastaDatabase, type="tblastn")
+    seq <- readAAStringSet(userFasta)
+  }
+  else if (dbtype == "prot" && userFastaType == "nucl") {
+    bl <- blast(db=fastaDatabase, type="blastx")
+    seq <- readDNAStringSet(userFasta)
+  }
+
+  #Checking how many fasta entries are in query fasta file
+  if (length(seq) != 1) {
+    stop("userFasta must contain only 1 fasta entry")
+  }
+
+  results <- predict(bl, seq, BLAST_args="-max_hsps 1")
+  return(results[1:maxSequencesReturned,])
 }
