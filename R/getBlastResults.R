@@ -50,9 +50,10 @@ getBlastResults <- function(userFasta, fastaDatabase, maxSequencesReturned=5, db
     makeblastdb(fastaDatabase, dbtype=dbType)
   }
   else {
-    print("BLAST Databse already exists for fastaDatabase file, skipping creation")
+    print("BLAST Databse already exists for fastaDatabase file, skipping database creation")
   }
 
+  #Selecting correct type of BLAST
   if (dbType == "nucl" && userFastaType == "nucl") {
     bl <- blast(db=fastaDatabase, type="blastn")
     seq <- readDNAStringSet(userFasta)
