@@ -23,6 +23,9 @@ graphBLASTResults <-function(blastResults, geneData, rowLabelScaling=1, colLabel
   toGraph <- geneData[queryName,]
   toIterate <- blastResults["SubjectID"]
   for (i in 1:nrow(toIterate)) {
+    if (queryName == toIterate[i,]) {
+      next
+    }
     if (!is.element(toIterate[i,], row.names(geneData))) {
       errorString <- paste("geneData does not contain", toIterate[i,], "skipping...")
       print(errorString)
