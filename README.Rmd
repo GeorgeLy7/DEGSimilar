@@ -24,15 +24,28 @@ database.
 
 ## Installation
 
-Yout can install the package from [GitHub](https://github.com/) with:
+You can install the package from [GitHub](https://github.com/) with:
 
 ``` r
-# install.packages("devtools")
+require("devtools")
 devtools::install_github("GeorgeLy7/DEGSimilar")
 ```
 
 In order to use this package the BLAST+ executable must be installed. It may be installed from here:
 https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=Download
+
+## Overview
+
+DEGSimilar contains the following functions:
+
+  *getBlastResults*: This function takes in two fasta files, one which contains one entry which is the designated query sequence.
+    The other fasta file is the file which the user wishes to create a BLAST database out of. The function will return the typical
+    BLAST results such as queryID, subjectID, E-value, bit score etc.
+    
+  
+  *graphBLASTResults*: This function takes in a list of BLAST results produced by getBLastResults and a list or dataframe containing the 
+    gene expression data in columns and the same gene names as the row names. The function outputs a heatmap of the gene expression data
+    of the genes listed in the BLAST result.
 
 ## Example
 
@@ -40,16 +53,26 @@ This is a basic example which shows you how to solve a common problem:
 
 ```{r example}
 library(DEGSimilar)
-blastResults <- getBlastResults("./data-raw/newTest2.fasta","./data-raw/StHeBC3.fasta")
+blastResults <- getBlastResults("./data-raw/exampleQueryFasta.fasta","./data-raw/exampleDatabase.fasta",dbType="nucl", userFastaType="prot")
 blastResults
+geneData <- read.csv("./data-raw/GeneDataExample.csv",encoding="UTF-8",row.names=1)
+geneData
+graphBLASTResults(blastResults=blastResults, geneData=geneData)
+
 ```
 
-You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date.
+## Contributions
 
-You can also embed plots, for example:
+The author of this package is George Ly. 
 
-```{r pressure, echo = FALSE}
-plot(pressure)
-```
+The *getBlastResults* function uses the `rBLAST` package in order to run the BLAST+ executables on the local machine. The function also uses the `Biostrings` package in order to load fasta files into R.
 
-In that case, don't forget to commit and push the resulting figure files, so they display on GitHub!
+The *graphBLASTResults* function uses the `gplots` package in order to create the heatmap.
+
+The example sequence data is taken from the TAIR11 *Arabidopsis thaliana* genome.The example gene expression data is not real data.
+
+## References
+
+## Acknowledgements
+
+This package was developed for BCB410H: Applied Bioinformatics, University of Toronto, Toronto, CANADA, 2020-2021. DEGSimilar welcomes issues, enhancement requests, and other contributions. To submit an issue, email at george.ly@mail.utoronto.ca or glyfully@gmail.com

@@ -14,8 +14,11 @@ LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
 Imports: 
-    Biostrings,
     rBLAST,
     gplots
 Suggests: 
     testthat
+Depends:
+    Biostrings (>= 2.26.2)
+SystemRequirements: 
+    ncbi-blast+
