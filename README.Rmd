@@ -18,35 +18,30 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of DEGSimilar is to ...
+The goal of DEGSimilar is to provide an easy pipeline in order to analyze the results of Differential Gene Expression (DEG).
+This is done by providing an easy method to compare DEGs of choice to other DEGs based on BLAST similiarity within a user-specified
+database.
 
 ## Installation
 
-You can install the released version of DEGSimilar from [CRAN](https://CRAN.R-project.org) with:
-
-``` r
-install.packages("DEGSimilar")
-```
-
-And the development version from [GitHub](https://github.com/) with:
+Yout can install the package from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
 devtools::install_github("GeorgeLy7/DEGSimilar")
 ```
+
+In order to use this package the BLAST+ executable must be installed. It may be installed from here:
+https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=Download
+
 ## Example
 
 This is a basic example which shows you how to solve a common problem:
 
 ```{r example}
 library(DEGSimilar)
-## basic example code
-```
-
-What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
-
-```{r cars}
-summary(cars)
+blastResults <- getBlastResults("./data-raw/newTest2.fasta","./data-raw/StHeBC3.fasta")
+blastResults
 ```
 
 You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date.
