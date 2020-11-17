@@ -29,7 +29,7 @@
 #' @export
 #' @import rBLAST
 #' @import Biostrings
-getBlastResults <- function(userFasta, fastaDatabase, maxSequencesReturned=5, dbType="nucl", userFastaType="nucl") {
+getBlastResults <- function(userFasta, fastaDatabase, maxSequencesReturned=5, dbType, userFastaType) {
 
   #Checking user input
   if (maxSequencesReturned < 1) {

@@ -1,0 +1,103 @@
+---
+title: "DEGSimilar"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{DEGSimilar}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Introduction
+
+DEGSimilar is a package which provides a streamlined pipeline in order to compare a gene of interest to a set of genes chosen by the user. This is done via the BLAST+ algorithm. 
+
+In order to download and use **DEGSimilar**, you must first have the BLAST+ executables available locally on your machine. In order to check whether this is already available locally on your machine run: 
+```r
+Sys.which("blastn")
+```
+
+If the executable exists on your machine then a path should be returned by the above command.
+If you do not have the executable then it may be downloaded from: https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=Download.
+You may have to restart R after running the installer for R to be able find it.
+ 
+In addition in some instances the Biostrings package must be installed from Bioconductor before installing DEGSimilar. This can be done by running the following.
+```r
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("Biostrings")
+```
+
+After doing the above you may run the following to install DEGSimilar:
+
+```r
+require("devtools")
+devtools::install_github("GeorgeLy7/DEGSimilar")
+```
+
+Afterwards the function may be loaded into R by running
+```{r}
+library(DEGSimilar)
+```
+
+## Functions
+
+The following section will describe the two functions of the package *getBlastResults* and *graphBLASTResults*.
+
+## getBlastResults
+
+This function will output the results of a BLAST search based on the user parameters. The type of BLAST will vary on the parameters.
+
+This function will take in two fasta files, one (labelled as userFasta) is the query sequence the user wishes to use in their BLAST run. That is the fasta file the user wishes to compare against the second file (lablled as fastaDatabase). *getBlastResults* will create a BLAST+ database file based on the fastaDatabase file. The user should provide paths to the files as parameters. These fasta files may be of nucleotide or amino acids, the user will have to input the type of the fasta files as parameters. 
+
+The other parameters of the function are as follows:
+
+maxSequencesReturned will truncate the returned list of the function to the number maxSequencesReturned is set to. The value of this parameter must be >= 1 or the function will return an error.
+
+An example with a value of maxSequencesReturned of 2:
+```{r}
+getBlastResults("../data-raw/exampleQueryFasta.fasta","../data-raw/exampleDatabase.fasta",maxSequencesReturned=2, dbType="nucl", userFastaType="prot")
+
+```
+
+An example with a value of maxSequencesReturned of 5:
+```{r}
+getBlastResults("../data-raw/exampleQueryFasta.fasta","../data-raw/exampleDatabase.fasta",maxSequencesReturned=5, dbType="nucl", userFastaType="prot")
+
+```
+
+dbType indicates whether the fastaDatabase file is a fasta file of nucleotides of amino acids. This value must be either "nucl" for nucleotides or "prot" for protein.
+
+userFastaType indicates whether the fastaDatabase file is a fasta file of nucleotides of amino acids. This value must be either "nucl" for nucleotides or "prot" for protein.
+
+The two above parameters will determine the type of BLAST ran, for example if both dbType and userFastaType are "nucl" then blastn will be ran. If dbType is "nucl" and userFastaType is "prot" then tBlastn will be ran.
+
+## graphBLASTResults
+
+This function will create a heatmap of the sequences recieved from *getBlastResults* and the provided gene expression values from the user.
+
+The parameter of blastResults will take in the exact output of *getBlastResults* with no alterations.
+
+The parameter of geneData is required to be a list or database with the following format:
+```{r, include=FALSE}
+geneData <- read.csv("../data-raw/GeneDataExample.csv",encoding="UTF-8",row.names=1)
+```
+```{r}
+geneData
+```
+The row names must be the same as their respective gene names in the database file used in *getBlastResults*. 
+
+The rowLabelScaling and colLabelScaling change the size of the row and column labels.
+
+An example with values of 0.5 for both label scalings:
+```{r}
+blastResults <- getBlastResults("../data-raw/exampleQueryFasta.fasta","../data-raw/exampleDatabase.fasta",maxSequencesReturned=5, dbType="nucl", userFastaType="prot")
+graphBLASTResults(blastResults=blastResults, geneData=geneData)
+```

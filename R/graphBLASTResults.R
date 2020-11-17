@@ -34,7 +34,14 @@ graphBLASTResults <-function(blastResults, geneData, rowLabelScaling=1, colLabel
       toGraph <- rbind(toGraph,geneData[toIterate[i,],])
     }
   }
-  heatmap.2(as.matrix(toGraph), cexRow = rowLabelScaling,
-            cexCol = colLabelScaling, srtCol = 45, margins = c(12,12), Rowv = FALSE, dendrogram = "col")
+  if (ncol(toGraph) == 1) {
+    df <- data.frame(toGraph)
+    heatmap.2(cbind(df[[1]],df[[1]]),labRow=row.names(df),labCol = "", margins = c(12,12))
+
+  }
+  else {
+    heatmap.2(as.matrix(toGraph), cexRow = rowLabelScaling,
+              cexCol = colLabelScaling, srtCol = 45, margins = c(10,10), Rowv = FALSE, dendrogram = "col")
+  }
 
 }

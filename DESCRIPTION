@@ -16,9 +16,12 @@ RoxygenNote: 7.1.1
 Imports: 
     rBLAST,
     gplots
-Suggests: 
-    testthat
-Depends:
+    Depends:
     Biostrings (>= 2.26.2)
+Suggests: 
+    testthat,
+    knitr,
+    rmarkdown
 SystemRequirements: 
     ncbi-blast+
+VignetteBuilder: knitr
