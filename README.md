@@ -93,6 +93,23 @@ thaliana* genome.The example gene expression data is not real data.
 
 ## References
 
+R Core Team (2020). R: A language and environment for statistical
+computing. R Foundation for Statistical Computing, Vienna, Austria.
+<https://www.R-project.org/>
+
+Michael Hahsler and Anurag Nagar (2019). rBLAST: Interface to the Basic
+Local Alignment Search Tool (BLAST). R package version 0.99.2.
+
+H. Pagès, P. Aboyoun, R. Gentleman and S. DebRoy (2020). Biostrings:
+Efficient manipulation of biological strings. R package version 2.58.0.
+<https://bioconductor.org/packages/Biostrings>
+
+Gregory R. Warnes, Ben Bolker, Lodewijk Bonebakker, Robert Gentleman,
+Wolfgang Huber, Andy Liaw, Thomas Lumley, Martin Maechler, Arni
+Magnusson, Steffen Moeller, Marc Schwartz and Bill Venables (2020).
+gplots: Various R Programming Tools for Plotting Data. R package version
+3.1.0. <https://CRAN.R-project.org/package=gplots>
+
 ## Acknowledgements
 
 This package was developed for BCB410H: Applied Bioinformatics,

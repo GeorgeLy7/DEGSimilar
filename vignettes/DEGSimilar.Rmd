@@ -96,8 +96,6 @@ The row names must be the same as their respective gene names in the database fi
 
 The rowLabelScaling and colLabelScaling change the size of the row and column labels.
 
-An example with values of 0.5 for both label scalings:
-
 ## Package References
 
 [Ly, George. (2020) DEGSimilar: A streamlined pipeline to compare DEGs 
