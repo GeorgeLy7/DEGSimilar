@@ -97,6 +97,13 @@ The row names must be the same as their respective gene names in the database fi
 The rowLabelScaling and colLabelScaling change the size of the row and column labels.
 
 An example with values of 0.5 for both label scalings:
-```{r}
-blastResults <- getBlastResults("../data-raw/exampleQueryFasta.fasta","../data-raw/exampleDatabase.fasta",maxSequencesReturned=5, dbType="nucl", userFastaType="prot")
-```
+
+## Package References
+
+[Ly, George. (2020) DEGSimilar: A streamlined pipeline to compare DEGs 
+  via BLAST. Unpublished.](https://github.com/GeorgeLy7/DEGSimilar)
+
+
+## Other References
+
+R Core Team (2020). R: A language and environment for statistical computing. R Foundation for Statistical Computing, Vienna, Austria. https://www.R-project.org/

@@ -24,3 +24,5 @@ Suggests:
 SystemRequirements: 
     ncbi-blast+
 VignetteBuilder: knitr
+Depends: 
+    R (>= 2.10)
