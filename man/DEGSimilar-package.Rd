@@ -4,7 +4,7 @@
 \name{DEGSimilar-package}
 \alias{DEGSimilar}
 \alias{DEGSimilar-package}
-\title{DEGSimilar: What the Package Does (One Line, Title Case)}
+\title{DEGSimilar: A streamlined pipeline to compare DEGs via BLAST.}
 \description{
 What the package does (one paragraph).
 }

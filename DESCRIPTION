@@ -1,6 +1,6 @@
 Package: DEGSimilar
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
+Title: A streamlined pipeline to compare DEGs via BLAST.
+Version: 0.9
 Authors@R: 
     person(given = "George",
            family = "Ly",
@@ -15,8 +15,7 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
 Imports: 
     rBLAST,
-    gplots
-    Depends:
+    gplots,
     Biostrings (>= 2.26.2)
 Suggests: 
     testthat,

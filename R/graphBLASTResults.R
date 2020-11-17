@@ -41,7 +41,7 @@ graphBLASTResults <-function(blastResults, geneData, rowLabelScaling=1, colLabel
   }
   else {
     heatmap.2(as.matrix(toGraph), cexRow = rowLabelScaling,
-              cexCol = colLabelScaling, srtCol = 45, margins = c(10,10), Rowv = FALSE, dendrogram = "col")
+              cexCol = colLabelScaling, srtCol = 45, margins = c(8,8), Rowv = FALSE, dendrogram = "col")
   }
 
 }

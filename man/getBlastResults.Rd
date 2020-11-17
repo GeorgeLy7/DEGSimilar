@@ -8,8 +8,8 @@ getBlastResults(
   userFasta,
   fastaDatabase,
   maxSequencesReturned = 5,
-  dbType = "nucl",
-  userFastaType = "nucl"
+  dbType,
+  userFastaType
 )
 }
 \arguments{

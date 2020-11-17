@@ -99,5 +99,4 @@ The rowLabelScaling and colLabelScaling change the size of the row and column la
 An example with values of 0.5 for both label scalings:
 ```{r}
 blastResults <- getBlastResults("../data-raw/exampleQueryFasta.fasta","../data-raw/exampleDatabase.fasta",maxSequencesReturned=5, dbType="nucl", userFastaType="prot")
-graphBLASTResults(blastResults=blastResults, geneData=geneData)
 ```
