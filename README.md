@@ -62,7 +62,7 @@ browseVignettes("DEGSimilar")
 
 An example pipeline of the use of this package is as follows:
 
-![](./inst/extdata/image1.png)
+![](./inst/extdata/Image1.png)
 
 ## Example
 
