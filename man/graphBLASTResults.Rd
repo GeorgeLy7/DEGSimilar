@@ -20,7 +20,17 @@ graphBLASTResults(
 
 \item{colLabelScaling}{An integer representing the scaling of the column labels, the higher the bigger the label will be}
 }
+\value{
+Returns a plot comparing the expression gene data of one more treatments of the genes in blastResults
+}
 \description{
 A function that gets the BLAST hits of the submitted fasta file in the submitted fasta dabatase file.
 Creates a fasta database out of the user-submitted fastaDatabse file.
+}
+\examples{
+# Example 1:
+# Using the provided gene expression and blastResults files
+# data(BlastResults5Max)
+# data(geneData)
+# graphBLASTResults(blastResults=BlastResults5Max, geneData=geneData)
 }

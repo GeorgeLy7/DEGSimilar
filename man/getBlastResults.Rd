@@ -46,3 +46,15 @@ Returns a list containing the BLAST result template.
 A function that gets the BLAST hits of the submitted fasta file in the submitted fasta dabatase file.
 Creates a fasta database out of the user-submitted fastaDatabse file.
 }
+\examples{
+# Example 1:
+# Using the provided fasta query and database files
+# data(databaseFasta)
+# data(queryFasta)
+# sink("tmpDatabase.fasta")
+# cat(databaseFasta)
+# sink("tmpQuery.fasta")
+# cat(queryFata)
+# blastResults <- getBlastResults("tmpQuery.fasta", "tmpDatabase.fasta", maxSequencesReturned=5, dbType="nucl", userFastaType="prot")
+# blastResults
+}

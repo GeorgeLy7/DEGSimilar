@@ -6,7 +6,8 @@
 \alias{DEGSimilar-package}
 \title{DEGSimilar: A streamlined pipeline to compare DEGs via BLAST.}
 \description{
-What the package does (one paragraph).
+DEGSimilar provides a streamlined pipeline in order to compare genes of interest
+            based on BLAST databases and queries provided by the user.
 }
 \author{
 \strong{Maintainer}: George Ly \email{george.ly@mail.utoronto.com} (\href{https://orcid.org/YOUR-ORCID-ID}{ORCID})
