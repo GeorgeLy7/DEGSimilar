@@ -38,6 +38,11 @@ ui <- fluidPage(
                    label="What type of sequence is the Database Fasta?",
                    choices=c("nucl","prot")
       ),
+      numericInput("maxSeqs",
+                   "Max number of BLAST Results:",
+                   5,
+                   min = 2,
+                   max = 100),
       fileInput("geneData", "Choose CSV Gene Data File",
                 accept = c(
                   "text/csv",
@@ -61,7 +66,7 @@ server <- function(input, output) {
     if (is.null(database))
       return(NULL)
     DEGSimilar::getBlastResults(query$datapath, database$datapath,
-                                maxSequencesReturned=5, dbType=input$DatabaseType, userFastaType=input$QueryType)
+                                maxSequencesReturned=input$maxSeqs, dbType=input$DatabaseType, userFastaType=input$QueryType)
   })
   output$graphResults <- renderPlot({
     query <- input$query
