@@ -60,6 +60,10 @@ running:
 browseVignettes("DEGSimilar")
 ```
 
+An example pipeline of the use of this package is as follows:
+
+![](./inst/extdata/image1.png)
+
 ## Example
 
 This is a basic example which shows you how to solve a common problem:

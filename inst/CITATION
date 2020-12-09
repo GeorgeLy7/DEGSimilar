@@ -1,0 +1,12 @@
+citHeader("To cite DEGSimilar in publications use:")
+
+citEntry(
+  entry    = "Unpublished",
+  title    = "DEGSimilar: A Streamlined Pipeline to DEG Analysis",
+  author   = "George Ly",
+  year     = "2020",
+  note     = "Unpublished",
+  textVersion = paste(
+"Ly, G. (2020) DEGSimilar: A Streamlined Pipeline to DEG Analysis. Unpublished. URL https://github.com/GeorgeLy7/DEGSimilar"
+  )
+)
