@@ -65,6 +65,8 @@ server <- function(input, output) {
       return(NULL)
     if (is.null(database))
       return(NULL)
+    if (is.null(input$maxSeqs))
+      return(NULL)
     DEGSimilar::getBlastResults(query$datapath, database$datapath,
                                 maxSequencesReturned=input$maxSeqs, dbType=input$DatabaseType, userFastaType=input$QueryType)
   })
@@ -79,10 +81,12 @@ server <- function(input, output) {
       return(NULL)
     if (is.null(geneExpression))
       return(NULL)
+    if (is.null(input$maxSeqs))
+      return(NULL)
 
     expressionData <- read.csv(geneExpression$datapath,row.names=1)
     tmpBlastResults <- DEGSimilar::getBlastResults(query$datapath, database$datapath,
-                                maxSequencesReturned=5, dbType=input$DatabaseType, userFastaType=input$QueryType)
+                                maxSequencesReturned=input$maxSeqs, dbType=input$DatabaseType, userFastaType=input$QueryType)
     graphBLASTResults(blastResults=tmpBlastResults, geneData=expressionData)
 
   })
