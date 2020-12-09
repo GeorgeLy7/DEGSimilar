@@ -14,8 +14,8 @@ based on BLAST similiarity within a user-specified database.
 
 ## Installation
 
-In order to use this package the BLAST+ executable must be installed. It
-may be installed from here:
+In order to use (and install) this package the BLAST+ executable must be
+installed. It may be installed from here:
 <https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=Download>
 
 In addition, R must be able to recognize the path to the BLAST
@@ -35,6 +35,12 @@ with:
 ``` r
 require("devtools")
 devtools::install_github("GeorgeLy7/DEGSimilar", build_vignettes = TRUE)
+```
+
+In order to run the shiny app:
+
+``` r
+DEGSimilar::runDEGSimilar()
 ```
 
 ## Overview
