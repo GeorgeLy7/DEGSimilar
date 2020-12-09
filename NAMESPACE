@@ -2,6 +2,8 @@
 
 export(getBlastResults)
 export(graphBLASTResults)
+export(runDEGSimilar)
 import(Biostrings)
 import(gplots)
 import(rBLAST)
+importFrom(shiny,runApp)
