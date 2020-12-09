@@ -29,6 +29,18 @@
 #' @export
 #' @import rBLAST
 #' @import Biostrings
+#'
+#' @examples
+#' # Example 1:
+#' # Using the provided fasta query and database files
+#' # data(databaseFasta)
+#' # data(queryFasta)
+#' # sink("tmpDatabase.fasta")
+#' # cat(databaseFasta)
+#' # sink("tmpQuery.fasta")
+#' # cat(queryFata)
+#' # blastResults <- getBlastResults("tmpQuery.fasta", "tmpDatabase.fasta", maxSequencesReturned=5, dbType="nucl", userFastaType="prot")
+#' # blastResults
 getBlastResults <- function(userFasta, fastaDatabase, maxSequencesReturned=5, dbType, userFastaType) {
 
   #Checking if BLAST capability is on system

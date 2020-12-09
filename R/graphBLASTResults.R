@@ -11,6 +11,14 @@
 #' @export
 #' @import gplots
 #' @return Returns a plot comparing the expression gene data of one more treatments of the genes in blastResults
+#'
+#' @examples
+#' # Example 1:
+#' # Using the provided gene expression and blastResults files
+#' # data(BlastResults5Max)
+#' # data(geneData)
+#' # graphBLASTResults(blastResults=BlastResults5Max, geneData=geneData)
+
 graphBLASTResults <-function(blastResults, geneData, rowLabelScaling=1, colLabelScaling=1) {
 
   #Checking if BLAST capability is on system

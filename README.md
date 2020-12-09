@@ -53,6 +53,13 @@ expression data in columns and the same gene names as the row names. The
 function outputs a heatmap of the gene expression data of the genes
 listed in the BLAST result.
 
+For more information please refer to the vignette, this can be done by
+running:
+
+``` r
+browseVignettes("DEGSimilar")
+```
+
 ## Example
 
 This is a basic example which shows you how to solve a common problem:
