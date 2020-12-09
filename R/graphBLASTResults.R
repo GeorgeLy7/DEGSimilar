@@ -10,8 +10,15 @@
 #'
 #' @export
 #' @import gplots
+#' @return Returns a plot comparing the expression gene data of one more treatments of the genes in blastResults
 graphBLASTResults <-function(blastResults, geneData, rowLabelScaling=1, colLabelScaling=1) {
 
+  #Checking if BLAST capability is on system
+  if (Sys.which("makeblastdb") == '' || (Sys.which("blastn") == '' || Sys.which("tblastn") == '')) {
+    stop("BLAST+ executable cannot be found by R, install the executable from NCBI or try specifying the location of the executable to R")
+  }
+
+  #Checking user input
   if (ncol(blastResults) < 2) {
     stop("Must contain more than 1 BLAST result to graph")
   }
@@ -36,11 +43,11 @@ graphBLASTResults <-function(blastResults, geneData, rowLabelScaling=1, colLabel
   }
   if (ncol(toGraph) == 1) {
     df <- data.frame(toGraph)
-    heatmap.2(cbind(df[[1]],df[[1]]),labRow=row.names(df),labCol = "", margins = c(12,12))
+    gplots::heatmap.2(cbind(df[[1]],df[[1]]),labRow=row.names(df),labCol = "", margins = c(12,12))
 
   }
   else {
-    heatmap.2(as.matrix(toGraph), cexRow = rowLabelScaling,
+    gplots::heatmap.2(as.matrix(toGraph), cexRow = rowLabelScaling,
               cexCol = colLabelScaling, srtCol = 45, margins = c(8,8), Rowv = FALSE, dendrogram = "col")
   }
 

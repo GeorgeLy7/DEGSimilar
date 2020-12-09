@@ -21,11 +21,18 @@ DEGSimilar is a package which provides a streamlined pipeline in order to compar
 In order to download and use **DEGSimilar**, you must first have the BLAST+ executables available locally on your machine. In order to check whether this is already available locally on your machine run: 
 ```r
 Sys.which("blastn")
+Sys.which("tblastn")
+Sys.which("makeblastdb")
 ```
 
 If the executable exists on your machine then a path should be returned by the above command.
-If you do not have the executable then it may be downloaded from: https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=Download.
+If you do not have the executable then it may be downloaded from:
+
+https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=Download.
+
 You may have to restart R after running the installer for R to be able find it.
+
+If you install the executables and R cannot find it still, then you may need to manually refer R to the location of the executables on your system.
  
 In addition in some instances the Biostrings package must be installed from Bioconductor before installing DEGSimilar. This can be done by running the following.
 ```r
@@ -39,7 +46,7 @@ After doing the above you may run the following to install DEGSimilar:
 
 ```r
 require("devtools")
-devtools::install_github("GeorgeLy7/DEGSimilar")
+devtools::install_github("GeorgeLy7/DEGSimilar", build_vignettes = TRUE)
 ```
 
 Afterwards the function may be loaded into R by running
@@ -63,13 +70,13 @@ maxSequencesReturned will truncate the returned list of the function to the numb
 
 An example with a value of maxSequencesReturned of 2:
 ```{r}
-getBlastResults("../data-raw/exampleQueryFasta.fasta","../data-raw/exampleDatabase.fasta",maxSequencesReturned=2, dbType="nucl", userFastaType="prot")
+getBlastResults("exampleQueryFasta.fasta","exampleDatabase.fasta",maxSequencesReturned=2, dbType="nucl", userFastaType="prot")
 
 ```
 
 An example with a value of maxSequencesReturned of 5:
 ```{r}
-getBlastResults("../data-raw/exampleQueryFasta.fasta","../data-raw/exampleDatabase.fasta",maxSequencesReturned=5, dbType="nucl", userFastaType="prot")
+getBlastResults("exampleQueryFasta.fasta","exampleDatabase.fasta",maxSequencesReturned=5, dbType="nucl", userFastaType="prot")
 
 ```
 
@@ -87,7 +94,7 @@ The parameter of blastResults will take in the exact output of *getBlastResults*
 
 The parameter of geneData is required to be a list or database with the following format:
 ```{r, include=FALSE}
-geneData <- read.csv("../data-raw/GeneDataExample.csv",encoding="UTF-8",row.names=1)
+geneData <- read.csv("GeneDataExample.csv",encoding="UTF-8",row.names=1)
 ```
 ```{r}
 geneData

@@ -14,16 +14,28 @@ based on BLAST similiarity within a user-specified database.
 
 ## Installation
 
-You can install the package from [GitHub](https://github.com/) with:
-
-``` r
-require("devtools")
-devtools::install_github("GeorgeLy7/DEGSimilar")
-```
-
 In order to use this package the BLAST+ executable must be installed. It
 may be installed from here:
 <https://blast.ncbi.nlm.nih.gov/Blast.cgi?CMD=Web&PAGE_TYPE=BlastDocs&DOC_TYPE=Download>
+
+In addition, R must be able to recognize the path to the BLAST
+executable. This may be checked by running the following:
+
+``` r
+Sys.which("blastn")
+Sys.which("makeblastdb")
+```
+
+If these do not return a proper directory, then you must specify to R
+the directory at which these executables are located.
+
+You can then install the package from [GitHub](https://github.com/)
+with:
+
+``` r
+require("devtools")
+devtools::install_github("GeorgeLy7/DEGSimilar", build_vignettes = TRUE)
+```
 
 ## Overview
 

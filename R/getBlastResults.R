@@ -31,6 +31,11 @@
 #' @import Biostrings
 getBlastResults <- function(userFasta, fastaDatabase, maxSequencesReturned=5, dbType, userFastaType) {
 
+  #Checking if BLAST capability is on system
+  if (Sys.which("makeblastdb") == '' || (Sys.which("blastn") == '' || Sys.which("tblastn") == '')) {
+    stop("BLAST+ executable cannot be found by R, install the executable from NCBI or try specifying the location of the executable to R")
+  }
+
   #Checking user input
   if (maxSequencesReturned < 1) {
     stop("max_target_seqs should be greater than 1")
@@ -56,19 +61,19 @@ getBlastResults <- function(userFasta, fastaDatabase, maxSequencesReturned=5, db
   #Selecting correct type of BLAST
   if (dbType == "nucl" && userFastaType == "nucl") {
     bl <- blast(db=fastaDatabase, type="blastn")
-    seq <- readDNAStringSet(userFasta)
+    seq <- Biostrings::readDNAStringSet(userFasta)
   }
   else if (dbType == "prot" && userFastaType == "prot") {
     bl <- blast(db=fastaDatabase, type="blastp")
-    seq <- readAAStringSet(userFasta)
+    seq <- Biostrings::readAAStringSet(userFasta)
   }
   else if (dbType == "nucl" && userFastaType == "prot") {
     bl <- blast(db=fastaDatabase, type="tblastn")
-    seq <- readAAStringSet(userFasta)
+    seq <- Biostrings::readAAStringSet(userFasta)
   }
   else if (dbtype == "prot" && userFastaType == "nucl") {
     bl <- blast(db=fastaDatabase, type="blastx")
-    seq <- readDNAStringSet(userFasta)
+    seq <- Biostrings::readDNAStringSet(userFasta)
   }
 
   #Checking how many fasta entries are in query fasta file

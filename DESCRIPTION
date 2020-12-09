@@ -1,13 +1,14 @@
 Package: DEGSimilar
 Title: A streamlined pipeline to compare DEGs via BLAST.
-Version: 0.9
+Version: 1.1
 Authors@R: 
     person(given = "George",
            family = "Ly",
            role = c("aut", "cre"),
            email = "george.ly@mail.utoronto.com",
            comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
+Description: DEGSimilar provides a streamlined pipeline in order to compare genes of interest
+            based on BLAST databases and queries provided by the user.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
@@ -26,3 +27,5 @@ SystemRequirements:
 VignetteBuilder: knitr
 Depends: 
     R (>= 2.10)
+Remotes: 
+    mhahsler/rBLAST
